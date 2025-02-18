@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelRate - Câmbio para Viajantes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <h1>TravelRate</h1>
+                </div>
+                <nav class="nav">
+                    <a href="#converter">Conversor</a>
+                    <a href="#destinations">Destinos</a>
+                    <a href="#testimonials">Depoimentos</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2>Encontre Destinos Econômicos para Sua Próxima Viagem</h2>
+                <p>Compare taxas de câmbio e descubra lugares onde seu dinheiro vale mais.</p>
+            </div>
+        </section>
+
+        <!-- Currency Converter -->
+        <section id="converter" class="converter-section">
+            <div class="container">
+                <div class="converter-card">
+                    <div class="converter-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="2" y1="7" x2="22" y2="7"/>
+                        </svg>
+                        <h3>Conversor de Moedas</h3>
+                    </div>
+                    <div class="converter-body">
+                        <div class="input-group">
+                            <label for="amount">Valor</label>
+                            <input type="number" id="amount" placeholder="Digite o valor">
+                        </div>
+                        <div class="currency-group">
+                            <div class="select-group">
+                                <label for="from-currency">De</label>
+                                <select id="from-currency">
+                                    <option value="BRL">Real (BRL)</option>
+                                    <option value="USD">Dólar (USD)</option>
+                                    <option value="EUR">Euro (EUR)</option>
+                                </select>
+                            </div>
+                            <button class="swap-button" id="swap-currencies">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+                                </svg>
+                            </button>
+                            <div class="select-group">
+                                <label for="to-currency">Para</label>
+                                <select id="to-currency">
+                                    <option value="USD">Dólar (USD)</option>
+                                    <option value="EUR">Euro (EUR)</option>
+                                    <option value="BRL">Real (BRL)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="convert-button" id="convert">Converter</button>
+                        <div class="result" id="result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended Destinations -->
+        <section id="destinations" class="destinations-section">
+            <div class="container">
+                <h3>Destinos Recomendados</h3>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80" alt="Tailândia">
+                        <div class="destination-info">
+                            <h4>Tailândia</h4>
+                            <p class="currency-rate">1 BRL = 5,91 THB</p>
+                            <p class="location">Sudeste Asiático</p>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80" alt="Vietnã">
+                        <div class="destination-info">
+                            <h4>Vietnã</h4>
+                            <p class="currency-rate">1 BRL = 4.459 VND</p>
+                            <p class="location">Sudeste Asiático</p>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <img src="https://blogmaladeviagem.com.br/wp-content/uploads/2022/11/blog-mv-buenos-aires8.jpg" alt="Vietnã">
+                        <div class="destination-info">
+                            <h4>Argentina</h4>
+                            <p class="currency-rate">1 BRL = 185,45 ARS</p>
+                            <p class="location">América do Sul</p>
+                        </div>
+                        <div class="destination-card">
+                            <img src="https://www.civitatis.com/blog/wp-content/uploads/2022/10/panoramica-plaza-bolivar-bogota.jpg" alt="Portugal">
+                            <div class="destination-info">
+                                <h4>Colombia</h4>
+                                <p class="currency-rate">1 BRL = 722,16 COP</p>
+                                <p class="location">Améria do Sul</p>
+                            </div>
+                    </div>
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&q=80" alt="Portugal">
+                        <div class="destination-info">
+                            <h4>Portugal</h4>
+                            <p class="currency-rate">1 BRL = 0,17 EUR</p>
+                            <p class="location">Europa</p>
+                        </div> 
+                        <div class="destination-card">
+                            <img src="https://turismo.eurodicas.com.br/wp-content/uploads/2019/10/o-que-fazer-na-romenia.jpg" alt="Portugal">
+                            <div class="destination-info">
+                                <h4>Romênia</h4>
+                                <p class="currency-rate">1 BRL = 0,17 RON</p>
+                                <p class="location">Leste Europeu</p>
+                            </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <h3>Depoimentos de Viajantes</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" alt="Sarah Johnson">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p>Estados Unidos</p>
+                            </div>
+                        </div>
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "Encontrei ótimas oportunidades para minha viagem ao Sudeste Asiático!"
+                        </p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80" alt="Marco Silva">
+                            <div>
+                                <h4>Marco Silva</h4>
+                                <p>Brasil</p>
+                            </div>
+                        </div>
+                        <div class="rating">★★★★☆</div>
+                        <p class="testimonial-text">
+                            "Perfeito para planejar aventuras econômicas pela Europa."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span>TravelRate</span>
+                </div>
+                <p>&copy; 2025 TravelRate. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
