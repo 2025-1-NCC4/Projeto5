@@ -1,36 +1,47 @@
 from bcb import sgs
 import datetime
-import pandas as pd
 
-# Definir datas
-hoje = datetime.date.today().strftime('%Y-%m-%d')
-ano_atras = '2000-01-01'
+# Definir período de captação (personalizado com timedelta)
+hoje = datetime.date.today()
+dt_inicio = hoje - datetime.timedelta(days=365)
 
-# Dicionário de séries do SGS do Banco Central
+# Dicionário de séries relevantes para importação e exportação (Diários)
 series = {
-    'Dólar': 1,
-    'Euro': 21619,
-    'Yuan': 10813,
-    'IPCA': 433,
-    'IGP-M': 189,
-    'SELIC': 432,
-    'PIB Diário': 22099,
-    'Balança Comercial': 22701
+    'Dólar': 1,                  # Taxa de câmbio (Venda) - dólar
+    'Euro': 21619,               # Taxa de câmbio (Venda) - euro
+    'Iene': 21621,               # Taxa de câmbio (Venda) - iene
+    'Exportações': 13966,        # Total de exportações
+    'Importações': 13962,        # Total de importações
+    'SELIC': 432                 # Taxa SELIC
 }
 
-# Validando se os códigos sgs estão corretos
-# dados = {}
-# for nome, codigo in series.items():
-#     try:
-#         df = sgs.get(codigo, start=ano_atras, end=hoje)
-#         dados[nome] = df
-#         print(f"✔ Série {nome} baixada com sucesso!")
-#     except Exception as e:
-#         print(f"❌ Erro ao buscar {nome} ({codigo}): {e}")
+# Criar um DataFrame consolidado
+tx = sgs.get(series, start=dt_inicio, end=hoje)
+df = tx.reset_index()
 
-df = sgs.get(series, start=ano_atras, end=hoje)
-# Resetando índice
-df = df.reset_index()
-df = df.dropna()
+# Renomear a primeira coluna para 'Data' (caso tenha outro nome)
+df.rename(columns={df.columns[0]: 'Data'}, inplace=True)
 
-df.to_csv('teste_bcb.csv')
+# Captar a Balança Comercial mensal
+balanca_comercial = sgs.get(22701, start=dt_inicio, end=hoje)
+
+# Converter o índice para período mensal
+balanca_comercial.index = balanca_comercial.index.to_period('M')
+
+# Calcular a média diária da balança comercial para cada mês
+coluna_balanca = balanca_comercial.columns[0]  # Pega o nome correto da coluna
+balanca_comercial['Balança Comercial'] = balanca_comercial [coluna_balanca] / balanca_comercial.index.days_in_month
+balanca_comercial = balanca_comercial[['Balança Comercial']]
+
+# Adicionar a média da balança comercial ao DataFrame principal
+df['Mes'] = df['Data'].dt.to_period('M')
+df = df.merge(balanca_comercial, left_on='Mes', right_index=True, how='left')
+df.drop(columns=['Mes'], inplace=True)
+
+# Preencher valores ausentes com a média do período
+df.fillna(df.mean(), inplace=True)
+
+# Exportar para CSV
+df.to_csv(f'import_export_{dt_inicio}_{hoje}.csv', index=False)
+
+print("✅ Dados exportados para 'dados_import_export.csv'")
