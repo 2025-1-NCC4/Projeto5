@@ -6,6 +6,7 @@ import warnings
 import os
 from datetime import datetime, timedelta
 import numpy as np
+from statsmodels.tsa.arima.model import ARIMA
 
 # Suprimir avisos de ARIMA para melhor legibilidade
 warnings.filterwarnings("ignore")
