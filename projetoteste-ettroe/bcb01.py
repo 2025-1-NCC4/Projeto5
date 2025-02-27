@@ -2,7 +2,6 @@ import pandas as pd
 import plotly.express as px
 import dash
 from dash import dcc, html, Input, Output, dash_table
-from statsmodels.tsa.arima.model import ARIMA
 import warnings
 import os
 from datetime import datetime, timedelta
